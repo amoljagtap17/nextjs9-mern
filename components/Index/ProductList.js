@@ -8,6 +8,7 @@ const ProductList = ({ products }) => {
       meta: `$${product.price}`,
       color: 'teal',
       fluid: true,
+      raised: true,
       childKey: product._id,
       href: `/product?_id=${product._id}`
     }))
