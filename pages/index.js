@@ -1,4 +1,4 @@
-import axios from '../config/axios'
+import axios from '../utils/baseUrl'
 import ProductList from '../components/Index/ProductList'
 
 const Home = ({ products }) => {

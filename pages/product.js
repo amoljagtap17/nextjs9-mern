@@ -1,4 +1,4 @@
-import axios from '../config/axios'
+import axios from '../utils/baseUrl'
 import ProductSummary from '../components/Product/ProductSummary'
 import ProductAttributes from '../components/Product/ProductAttributes'
 
