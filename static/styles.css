@@ -1,11 +1,15 @@
 :root {
-  --bodyBg: #e0f7fa;
-  --menuBg: #006064;
-  --progressBar: #54d1db;
+  --bodyBg: #eceff1;
+  --menuBg: #263238;
+  --progressBar: #e65100;
 }
 
 body {
   background: var(--bodyBg) !important;
+}
+
+#nprogress .bar {
+  background: var(--progressBar) !important;
 }
 
 #menu {

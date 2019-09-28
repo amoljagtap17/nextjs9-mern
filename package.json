@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm run telemetry-disable && next dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "telemetry-disable": "next telemetry --disable",
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "next": "9.0.6",
+    "nprogress": "^0.2.0",
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "semantic-ui-react": "^0.88.1"
