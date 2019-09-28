@@ -1,0 +1,13 @@
+:root {
+  --bodyBg: #e0f7fa;
+  --menuBg: #006064;
+  --progressBar: #54d1db;
+}
+
+body {
+  background: var(--bodyBg) !important;
+}
+
+#menu {
+  background: var(--menuBg) !important;
+}
