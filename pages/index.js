@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import axios from '../config/axios'
 
 const Home = ({ products }) => {
-  console.log('products', products)
+  // console.log('products', products)
 
   return <div>home</div>
 }
