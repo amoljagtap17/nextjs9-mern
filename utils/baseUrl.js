@@ -6,9 +6,8 @@ const baseUrl =
     : 'http://localhost:3000'
 
 const instance = axios.create({
-  baseURL: `${baseUrl}/api`,
-  timeout: 3000
+  baseURL: `${baseUrl}/api`
 })
 
-export { baseUrl }
+export { baseUrl, axios }
 export default instance

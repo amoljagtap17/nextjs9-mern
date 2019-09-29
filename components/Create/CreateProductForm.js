@@ -1,5 +1,6 @@
 import { Formik, Field } from 'formik'
 import FormikField from '../Formik/FormikField'
+import { axios as cloudinaryAxios, default as axios } from '../../utils/baseUrl'
 
 import {
   Form,
@@ -9,6 +10,7 @@ import {
   Image,
   Message
 } from 'semantic-ui-react'
+import Axios from 'axios'
 
 const INITIAL_VALUES = {
   name: '',
@@ -18,7 +20,13 @@ const INITIAL_VALUES = {
   description: ''
 }
 
-const CreateProductForm = ({ handleSubmit, status, setFieldValue, dirty }) => {
+const CreateProductForm = ({
+  handleSubmit,
+  isSubmitting,
+  status,
+  setFieldValue,
+  dirty
+}) => {
   const handleMediaChange = event => {
     const { files } = event.currentTarget
     setFieldValue('media', files[0])
@@ -28,7 +36,7 @@ const CreateProductForm = ({ handleSubmit, status, setFieldValue, dirty }) => {
   const success = status === 'valid' && !dirty
 
   return (
-    <Form success={success} onSubmit={handleSubmit}>
+    <Form loading={isSubmitting} success={success} onSubmit={handleSubmit}>
       <Message
         success
         icon="check"
@@ -78,6 +86,7 @@ const CreateProductForm = ({ handleSubmit, status, setFieldValue, dirty }) => {
       />
       <Form.Field
         control={Button}
+        disabled={isSubmitting}
         color="blue"
         icon="pencil alternate"
         content="Submit"
@@ -87,8 +96,28 @@ const CreateProductForm = ({ handleSubmit, status, setFieldValue, dirty }) => {
   )
 }
 
-const handleOnSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
-  console.log('ONSUBMIT >> ', values)
+const handleImageUpload = async media => {
+  const data = new FormData()
+  data.append('file', media)
+  data.append('upload_preset', 'nextjs9-mern')
+  data.append('cloud_name', 'ajfsdeveloper')
+
+  const response = await cloudinaryAxios.post(process.env.CLOUDINARY_URL, data)
+  const mediaUrl = response.data.url
+
+  return mediaUrl
+}
+
+const handleOnSubmit = async (
+  values,
+  { setSubmitting, resetForm, setStatus }
+) => {
+  const mediaUrl = await handleImageUpload(values.media)
+  const { name, price, description } = values
+  const payload = { name, price, description, mediaUrl }
+
+  await axios.post('/product', payload)
+
   setSubmitting(false)
   resetForm(INITIAL_VALUES)
   setStatus('valid')
