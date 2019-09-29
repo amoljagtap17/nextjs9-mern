@@ -7,7 +7,7 @@ const baseUrl =
 
 const instance = axios.create({
   baseURL: `${baseUrl}/api`,
-  timeout: 1000
+  timeout: 3000
 })
 
 export { baseUrl }
